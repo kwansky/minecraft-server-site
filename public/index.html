@@ -7,60 +7,58 @@
   <meta name="description" content="Таразикрафт — политический Minecraft-сервер, где игроки создают государства, союзы и собственную историю.">
   <title>Таразикрафт — политический Minecraft-сервер</title>
   <style>
-    :root { color-scheme: dark; --bg:#111318; --panel:#191c23; --muted:#a4a9b4; --line:rgba(255,255,255,.09); --accent:#d8c18a; }
+    :root { color-scheme: dark; --bg:#111318; --panel:#191f1b; --muted:#a4aaa5; --line:rgba(255,255,255,.1); --accent:#527b5a; --accent-light:#8eae91; }
     * { box-sizing:border-box; margin:0; padding:0; }
     html { scroll-behavior:smooth; }
     body { background:var(--bg); color:#f4f4f2; font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.6; }
     a { color:inherit; text-decoration:none; }
-    .hero { min-height: min(760px, 94vh); position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 24px 150px; overflow:hidden; isolation:isolate; }
-    .hero::before { content:""; position:absolute; inset:0; z-index:-2; background: radial-gradient(ellipse at 50% 22%, rgba(126,111,81,.26), transparent 52%), linear-gradient(135deg,#252a30,#15191e 55%,#20221f); }
-    .hero::after { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(to bottom,rgba(12,14,17,.12) 0%,rgba(12,14,17,.2) 48%,var(--bg) 100%); }
-    .logo { width:min(390px,78vw); max-height:190px; object-fit:contain; filter:drop-shadow(0 12px 30px rgba(0,0,0,.45)); margin-bottom:26px; }
-    .eyebrow { color:var(--accent); letter-spacing:.28em; text-transform:uppercase; font-size:.72rem; font-weight:700; }
+    .hero { min-height:min(760px,94vh); position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 24px 130px; overflow:hidden; isolation:isolate; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-2; background:linear-gradient(180deg,rgba(10,15,12,.24),rgba(10,15,12,.3) 52%,var(--bg) 100%),url("https://raw.githubusercontent.com/kwansky/minecraft-server-site/main/ghost-6f1d92a522.png") center 42%/cover no-repeat; transform:scale(1.01); }
+    .hero::after { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(to bottom,rgba(12,14,17,.08) 0%,rgba(12,14,17,.12) 42%,var(--bg) 100%); pointer-events:none; }
+    .logo { width:min(390px,78vw); max-height:190px; object-fit:contain; filter:drop-shadow(0 12px 30px rgba(0,0,0,.5)); margin-bottom:26px; }
+    .eyebrow { color:var(--accent-light); letter-spacing:.28em; text-transform:uppercase; font-size:.72rem; font-weight:700; }
     h1 { font-size:clamp(2.4rem,7vw,5.4rem); line-height:1.05; letter-spacing:-.045em; margin:14px 0 20px; }
-    .hero-copy { max-width:690px; color:#c4c7cc; font-size:clamp(1rem,2vw,1.2rem); }
+    .hero-copy { max-width:690px; color:#d0d5d0; font-size:clamp(1rem,2vw,1.2rem); text-shadow:0 2px 14px #000; }
     .actions { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:32px; }
     .button { border:1px solid var(--line); border-radius:9px; padding:13px 20px; font-weight:700; transition:.2s ease; cursor:pointer; }
-    .button.primary { background:var(--accent); color:#171717; border-color:var(--accent); }
+    .button.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
     .button.secondary { background:rgba(255,255,255,.07); backdrop-filter:blur(8px); }
-    .button:hover, .nav a:hover, .donate-card:hover { transform:translateY(-2px); }
+    .button:hover, nav a:hover, .donate-card:hover { transform:translateY(-2px); }
     .topbar { position:absolute; z-index:2; top:0; left:0; right:0; display:flex; justify-content:center; padding:22px 18px; }
-    nav { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; padding:7px; border:1px solid var(--line); border-radius:12px; background:rgba(15,17,21,.58); backdrop-filter:blur(14px); }
-    nav a { color:#d5d7db; font-size:.9rem; padding:8px 15px; border-radius:7px; transition:.2s; }
+    nav { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; padding:7px; border:1px solid var(--line); border-radius:12px; background:rgba(12,17,13,.68); backdrop-filter:blur(14px); }
+    nav a { color:#e0e5e0; font-size:.9rem; padding:8px 15px; border-radius:7px; transition:.2s; }
     nav a:hover { background:rgba(255,255,255,.09); }
     main { width:min(1080px,calc(100% - 40px)); margin:0 auto; }
-    section { padding:74px 0; scroll-margin-top:30px; }
-    .section-head { margin-bottom:25px; }
-    .section-head .eyebrow { margin-bottom:8px; }
+    section { padding:42px 0; scroll-margin-top:30px; }
+    .section-head { margin-bottom:18px; }
+    .section-head .eyebrow { margin-bottom:6px; }
     h2 { font-size:clamp(1.8rem,4vw,2.7rem); letter-spacing:-.03em; }
     .section-copy { color:var(--muted); max-width:760px; }
     .about-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:18px; }
-    .panel { background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018)); border:1px solid var(--line); border-radius:16px; padding:26px; }
-    .panel p { color:#b9bdc5; }
+    .panel { background:linear-gradient(145deg,rgba(82,123,90,.12),rgba(255,255,255,.018)); border:1px solid var(--line); border-radius:16px; padding:26px; }
+    .panel p { color:#c0c7c0; }
     .facts { display:grid; gap:12px; }
     .fact { padding:17px; background:var(--panel); border:1px solid var(--line); border-radius:12px; }
-    .fact strong { display:block; color:var(--accent); font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+    .fact strong { display:block; color:var(--accent-light); font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
     .fact span { overflow-wrap:anywhere; }
-    .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:20px; }
     .donate-card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:25px; transition:.2s ease; }
     .donate-card h3 { font-size:1.35rem; margin-bottom:7px; }
     .donate-card p { color:var(--muted); font-size:.95rem; }
-    .donate-card .hint { display:inline-block; margin-top:18px; color:var(--accent); font-size:.83rem; }
+    .donate-card .hint { display:inline-block; margin-top:18px; color:var(--accent-light); font-size:.83rem; }
     .how { display:flex; align-items:center; justify-content:space-between; gap:24px; }
     .how p { max-width:650px; color:var(--muted); }
-    footer { border-top:1px solid var(--line); text-align:center; color:#818792; padding:28px 20px 36px; font-size:.88rem; }
-    @media(max-width:700px) { .about-grid,.cards { grid-template-columns:1fr; } .how { align-items:flex-start; flex-direction:column; } .hero { min-height:720px; } }
+    footer { border-top:1px solid var(--line); text-align:center; color:#818a82; padding:28px 20px 36px; font-size:.88rem; }
+    @media(max-width:700px) { .about-grid,.cards { grid-template-columns:1fr; } .how { align-items:flex-start; flex-direction:column; } .hero { min-height:720px; } section { padding:32px 0; } }
   </style>
 </head>
 <body>
   <header class="hero" id="home">
     <div class="topbar">
       <nav aria-label="Основная навигация">
-        <a href="#about">О сервере</a>
-        <a href="#rules">Правила</a>
-        <a href="#donate">Донат</a>
-        <a href="#how">Как играть?</a>
-        <a href="https://discord.gg/vrTVZuj6FJ" target="_blank" rel="noopener noreferrer">Discord ↗</a>
+        <a href="#" onclick="return false;">Главная</a>
+        <a href="#" onclick="return false;">Донат</a>
+        <a href="#" onclick="return false;">Как играть</a>
       </nav>
     </div>
     <img class="logo" src="./tarizicraft.png" alt="Таразикрафт">
@@ -77,9 +75,7 @@
     <section id="about">
       <div class="section-head"><div class="eyebrow">О проекте</div><h2>Это больше, чем выживание</h2></div>
       <div class="about-grid">
-        <div class="panel">
-          <p>Таразикрафт — политический Minecraft-сервер, где игроки сами создают историю мира. Основывай государства, развивай города, заключай союзы и договоры, соперничай за влияние, участвуй в конфликтах и меняй ход событий. Здесь нет заранее написанного сценария: будущее сервера зависит от решений его жителей.</p>
-        </div>
+        <div class="panel"><p>Таразикрафт — политический Minecraft-сервер, где игроки сами создают историю мира. Основывай государства, развивай города, заключай союзы и договоры, соперничай за влияние, участвуй в конфликтах и меняй ход событий. Здесь нет заранее написанного сценария: будущее сервера зависит от решений его жителей.</p></div>
         <div class="facts">
           <div class="fact"><strong>Адрес сервера</strong><span>tarizicraft.joinserver.xyz</span></div>
           <div class="fact"><strong>Доступ</strong><span>Только по заявкам через Discord</span></div>
