@@ -1,82 +1,129 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Server</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #101114;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .container {
-            padding: 30px;
-        }
-
-        h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        p {
-            color: #999;
-            font-size: 18px;
-        }
-
-        .ip {
-            margin-top: 30px;
-            padding: 15px 25px;
-            background: #202127;
-            border: 1px solid #383a44;
-            border-radius: 8px;
-            color: #fff;
-            cursor: pointer;
-            font-size: 17px;
-        }
-
-        .ip:hover {
-            background: #30323a;
-        }
-
-        .status {
-            margin-top: 20px;
-            color: #8bcf85;
-            font-size: 14px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111318">
+  <meta name="description" content="Таразикрафт — политический Minecraft-сервер, где игроки создают государства, союзы и собственную историю.">
+  <title>Таразикрафт — политический Minecraft-сервер</title>
+  <style>
+    :root { color-scheme: dark; --bg:#111318; --panel:#191c23; --muted:#a4a9b4; --line:rgba(255,255,255,.09); --accent:#d8c18a; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:#f4f4f2; font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    .hero { min-height: min(760px, 94vh); position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 24px 150px; overflow:hidden; isolation:isolate; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-2; background: radial-gradient(ellipse at 50% 22%, rgba(126,111,81,.26), transparent 52%), linear-gradient(135deg,#252a30,#15191e 55%,#20221f); }
+    .hero::after { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(to bottom,rgba(12,14,17,.12) 0%,rgba(12,14,17,.2) 48%,var(--bg) 100%); }
+    .logo { width:min(390px,78vw); max-height:190px; object-fit:contain; filter:drop-shadow(0 12px 30px rgba(0,0,0,.45)); margin-bottom:26px; }
+    .eyebrow { color:var(--accent); letter-spacing:.28em; text-transform:uppercase; font-size:.72rem; font-weight:700; }
+    h1 { font-size:clamp(2.4rem,7vw,5.4rem); line-height:1.05; letter-spacing:-.045em; margin:14px 0 20px; }
+    .hero-copy { max-width:690px; color:#c4c7cc; font-size:clamp(1rem,2vw,1.2rem); }
+    .actions { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:32px; }
+    .button { border:1px solid var(--line); border-radius:9px; padding:13px 20px; font-weight:700; transition:.2s ease; cursor:pointer; }
+    .button.primary { background:var(--accent); color:#171717; border-color:var(--accent); }
+    .button.secondary { background:rgba(255,255,255,.07); backdrop-filter:blur(8px); }
+    .button:hover, .nav a:hover, .donate-card:hover { transform:translateY(-2px); }
+    .topbar { position:absolute; z-index:2; top:0; left:0; right:0; display:flex; justify-content:center; padding:22px 18px; }
+    nav { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; padding:7px; border:1px solid var(--line); border-radius:12px; background:rgba(15,17,21,.58); backdrop-filter:blur(14px); }
+    nav a { color:#d5d7db; font-size:.9rem; padding:8px 15px; border-radius:7px; transition:.2s; }
+    nav a:hover { background:rgba(255,255,255,.09); }
+    main { width:min(1080px,calc(100% - 40px)); margin:0 auto; }
+    section { padding:74px 0; scroll-margin-top:30px; }
+    .section-head { margin-bottom:25px; }
+    .section-head .eyebrow { margin-bottom:8px; }
+    h2 { font-size:clamp(1.8rem,4vw,2.7rem); letter-spacing:-.03em; }
+    .section-copy { color:var(--muted); max-width:760px; }
+    .about-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:18px; }
+    .panel { background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018)); border:1px solid var(--line); border-radius:16px; padding:26px; }
+    .panel p { color:#b9bdc5; }
+    .facts { display:grid; gap:12px; }
+    .fact { padding:17px; background:var(--panel); border:1px solid var(--line); border-radius:12px; }
+    .fact strong { display:block; color:var(--accent); font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+    .fact span { overflow-wrap:anywhere; }
+    .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .donate-card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:25px; transition:.2s ease; }
+    .donate-card h3 { font-size:1.35rem; margin-bottom:7px; }
+    .donate-card p { color:var(--muted); font-size:.95rem; }
+    .donate-card .hint { display:inline-block; margin-top:18px; color:var(--accent); font-size:.83rem; }
+    .how { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .how p { max-width:650px; color:var(--muted); }
+    footer { border-top:1px solid var(--line); text-align:center; color:#818792; padding:28px 20px 36px; font-size:.88rem; }
+    @media(max-width:700px) { .about-grid,.cards { grid-template-columns:1fr; } .how { align-items:flex-start; flex-direction:column; } .hero { min-height:720px; } }
+  </style>
 </head>
 <body>
-
-    <div class="container">
-        <h1>MINECRAFT SERVER</h1>
-        <p>Добро пожаловать на наш сервер!</p>
-
-        <button class="ip" onclick="copyIP()">
-            play.example.ru
-        </button>
-
-        <div class="status">Сервер ждёт тебя</div>
+  <header class="hero" id="home">
+    <div class="topbar">
+      <nav aria-label="Основная навигация">
+        <a href="#about">О сервере</a>
+        <a href="#rules">Правила</a>
+        <a href="#donate">Донат</a>
+        <a href="#how">Как играть?</a>
+        <a href="https://discord.gg/vrTVZuj6FJ" target="_blank" rel="noopener noreferrer">Discord ↗</a>
+      </nav>
     </div>
+    <img class="logo" src="./tarizicraft.png" alt="Таразикрафт">
+    <div class="eyebrow">Политический Minecraft-сервер</div>
+    <h1>Создай свою историю</h1>
+    <p class="hero-copy">Мир, в котором государства рождаются из идей игроков, союзы меняют баланс сил, а каждое решение может войти в историю.</p>
+    <div class="actions">
+      <button class="button primary" id="copy-ip">Скопировать IP</button>
+      <a class="button secondary" href="https://discord.gg/vrTVZuj6FJ" target="_blank" rel="noopener noreferrer">Подать заявку в Discord</a>
+    </div>
+  </header>
 
-    <script>
-        function copyIP() {
-            navigator.clipboard.writeText("play.example.ru");
-            alert("IP скопирован!");
-        }
-    </script>
+  <main>
+    <section id="about">
+      <div class="section-head"><div class="eyebrow">О проекте</div><h2>Это больше, чем выживание</h2></div>
+      <div class="about-grid">
+        <div class="panel">
+          <p>Таразикрафт — политический Minecraft-сервер, где игроки сами создают историю мира. Основывай государства, развивай города, заключай союзы и договоры, соперничай за влияние, участвуй в конфликтах и меняй ход событий. Здесь нет заранее написанного сценария: будущее сервера зависит от решений его жителей.</p>
+        </div>
+        <div class="facts">
+          <div class="fact"><strong>Адрес сервера</strong><span>tarizicraft.joinserver.xyz</span></div>
+          <div class="fact"><strong>Доступ</strong><span>Только по заявкам через Discord</span></div>
+        </div>
+      </div>
+    </section>
 
+    <section id="rules">
+      <div class="section-head"><div class="eyebrow">Перед началом игры</div><h2>Правила проекта</h2></div>
+      <div class="panel how">
+        <p>Перед подачей заявки ознакомься с правилами Таразикрафта. Они определяют основы игры и взаимодействия между участниками проекта.</p>
+        <a class="button secondary" href="https://docs.google.com/document/d/16Ql8-5Q5trM6Ss_j2HGF-u-of1K7k7Zwd_iNiH0P7Gc/edit?tab=t.0#heading=h.82ix0g44h9ai" target="_blank" rel="noopener noreferrer">Открыть правила ↗</a>
+      </div>
+    </section>
+
+    <section id="donate">
+      <div class="section-head"><div class="eyebrow">Поддержка проекта</div><h2>Донат</h2><p class="section-copy">Раздел магазина уже подготовлен. Информация о привилегиях и покупке появится позже.</p></div>
+      <div class="cards">
+        <a class="donate-card" href="#donate" aria-label="VIP — скоро"><h3>VIP</h3><p>Привилегия VIP. Подробности и условия покупки будут добавлены позже.</p><span class="hint">Скоро появится</span></a>
+        <a class="donate-card" href="#donate" aria-label="Разбан — скоро"><h3>Разбан</h3><p>Возможность подать запрос на разбан. Подробности будут добавлены позже.</p><span class="hint">Скоро появится</span></a>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="section-head"><div class="eyebrow">Начни своё приключение</div><h2>Как играть?</h2></div>
+      <div class="panel how">
+        <p>Попасть на Таразикрафт можно только по заявке. Зайди на наш Discord-сервер, ознакомься с информацией и подай заявку на вступление. После её рассмотрения ты сможешь присоединиться к проекту.</p>
+        <a class="button primary" href="https://discord.gg/vrTVZuj6FJ" target="_blank" rel="noopener noreferrer">Перейти в Discord ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© Таразикрафт · Политический Minecraft-сервер</footer>
+  <script>
+    document.getElementById('copy-ip').addEventListener('click', async () => {
+      const button = document.getElementById('copy-ip');
+      try {
+        await navigator.clipboard.writeText('tarizicraft.joinserver.xyz');
+        button.textContent = 'IP скопирован!';
+      } catch {
+        button.textContent = 'IP: tarizicraft.joinserver.xyz';
+      }
+      setTimeout(() => { button.textContent = 'Скопировать IP'; }, 2200);
+    });
+  </script>
 </body>
 </html>
