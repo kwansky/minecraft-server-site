@@ -7,12 +7,12 @@
   <meta name="description" content="Таразикрафт — политический Minecraft-сервер, где игроки создают государства, союзы и собственную историю.">
   <title>Таразикрафт — политический Minecraft-сервер</title>
   <style>
-    :root { color-scheme: dark; --bg:#111318; --panel:#191f1b; --muted:#a4aaa5; --line:rgba(255,255,255,.1); --accent:#527b5a; --accent-light:#8eae91; }
+    :root { color-scheme:dark; --bg:#111318; --panel:#191f1b; --muted:#a4aaa5; --line:rgba(255,255,255,.1); --accent:#527b5a; --accent-light:#8eae91; }
     * { box-sizing:border-box; margin:0; padding:0; }
     html { scroll-behavior:smooth; }
-    body { background:var(--bg); color:#f4f4f2; font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.6; }
+    body { background:#000; color:#f4f4f2; font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.6; }
     a { color:inherit; text-decoration:none; }
-    .hero { min-height:min(760px,94vh); position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 24px 130px; overflow:hidden; isolation:isolate; }
+    .hero { min-height:min(760px,94vh); position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 24px 130px; overflow:hidden; isolation:isolate; background:var(--bg); }
     .hero::before { content:""; position:absolute; inset:0; z-index:-2; background:linear-gradient(180deg,rgba(10,15,12,.24),rgba(10,15,12,.3) 52%,var(--bg) 100%),url("https://raw.githubusercontent.com/kwansky/minecraft-server-site/main/ghost-6f1d92a522.png") center 42%/cover no-repeat; transform:scale(1.01); }
     .hero::after { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(to bottom,rgba(12,14,17,.08) 0%,rgba(12,14,17,.12) 42%,var(--bg) 100%); pointer-events:none; }
     .logo { width:min(390px,78vw); max-height:190px; object-fit:contain; filter:drop-shadow(0 12px 30px rgba(0,0,0,.5)); margin-bottom:26px; }
@@ -23,17 +23,16 @@
     .button { border:1px solid var(--line); border-radius:9px; padding:13px 20px; font-weight:700; transition:.2s ease; cursor:pointer; }
     .button.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
     .button.secondary { background:rgba(255,255,255,.07); backdrop-filter:blur(8px); }
-    .button:hover, nav a:hover, .donate-card:hover { transform:translateY(-2px); }
+    .button:hover, nav a:hover { transform:translateY(-2px); }
     .topbar { position:absolute; z-index:2; top:0; left:0; right:0; display:flex; justify-content:center; padding:22px 18px; }
     nav { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; padding:7px; border:1px solid var(--line); border-radius:12px; background:rgba(12,17,13,.68); backdrop-filter:blur(14px); }
     nav a { color:#e0e5e0; font-size:.9rem; padding:8px 15px; border-radius:7px; transition:.2s; }
     nav a:hover { background:rgba(255,255,255,.09); }
-    main { width:min(1080px,calc(100% - 40px)); margin:0 auto; }
-    section { padding:42px 0; scroll-margin-top:30px; }
-    .section-head { margin-bottom:18px; }
+    main { width:min(1080px,calc(100% - 40px)); margin:0 auto; background:var(--bg); }
+    section { padding:28px 0; scroll-margin-top:30px; }
+    .section-head { margin-bottom:16px; }
     .section-head .eyebrow { margin-bottom:6px; }
     h2 { font-size:clamp(1.8rem,4vw,2.7rem); letter-spacing:-.03em; }
-    .section-copy { color:var(--muted); max-width:760px; }
     .about-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:18px; }
     .panel { background:linear-gradient(145deg,rgba(82,123,90,.12),rgba(255,255,255,.018)); border:1px solid var(--line); border-radius:16px; padding:26px; }
     .panel p { color:#c0c7c0; }
@@ -41,15 +40,10 @@
     .fact { padding:17px; background:var(--panel); border:1px solid var(--line); border-radius:12px; }
     .fact strong { display:block; color:var(--accent-light); font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
     .fact span { overflow-wrap:anywhere; }
-    .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:20px; }
-    .donate-card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:25px; transition:.2s ease; }
-    .donate-card h3 { font-size:1.35rem; margin-bottom:7px; }
-    .donate-card p { color:var(--muted); font-size:.95rem; }
-    .donate-card .hint { display:inline-block; margin-top:18px; color:var(--accent-light); font-size:.83rem; }
     .how { display:flex; align-items:center; justify-content:space-between; gap:24px; }
     .how p { max-width:650px; color:var(--muted); }
-    footer { border-top:1px solid var(--line); text-align:center; color:#818a82; padding:28px 20px 36px; font-size:.88rem; }
-    @media(max-width:700px) { .about-grid,.cards { grid-template-columns:1fr; } .how { align-items:flex-start; flex-direction:column; } .hero { min-height:720px; } section { padding:32px 0; } }
+    footer { position:relative; border:0; text-align:center; color:#737b74; padding:90px 20px 36px; font-size:.88rem; background:linear-gradient(to bottom,var(--bg) 0%,#080a08 48%,#000 100%); }
+    @media(max-width:700px) { .about-grid { grid-template-columns:1fr; } .how { align-items:flex-start; flex-direction:column; } .hero { min-height:720px; } section { padding:22px 0; } footer { padding-top:68px; } }
   </style>
 </head>
 <body>
@@ -88,14 +82,6 @@
       <div class="panel how">
         <p>Перед подачей заявки ознакомься с правилами Таразикрафта. Они определяют основы игры и взаимодействия между участниками проекта.</p>
         <a class="button secondary" href="https://docs.google.com/document/d/16Ql8-5Q5trM6Ss_j2HGF-u-of1K7k7Zwd_iNiH0P7Gc/edit?tab=t.0#heading=h.82ix0g44h9ai" target="_blank" rel="noopener noreferrer">Открыть правила ↗</a>
-      </div>
-    </section>
-
-    <section id="donate">
-      <div class="section-head"><div class="eyebrow">Поддержка проекта</div><h2>Донат</h2><p class="section-copy">Раздел магазина уже подготовлен. Информация о привилегиях и покупке появится позже.</p></div>
-      <div class="cards">
-        <a class="donate-card" href="#donate" aria-label="VIP — скоро"><h3>VIP</h3><p>Привилегия VIP. Подробности и условия покупки будут добавлены позже.</p><span class="hint">Скоро появится</span></a>
-        <a class="donate-card" href="#donate" aria-label="Разбан — скоро"><h3>Разбан</h3><p>Возможность подать запрос на разбан. Подробности будут добавлены позже.</p><span class="hint">Скоро появится</span></a>
       </div>
     </section>
 
