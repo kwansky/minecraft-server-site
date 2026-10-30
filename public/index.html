@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Server</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #101114;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #999;
+            font-size: 18px;
+        }
+
+        .ip {
+            margin-top: 30px;
+            padding: 15px 25px;
+            background: #202127;
+            border: 1px solid #383a44;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .ip:hover {
+            background: #30323a;
+        }
+
+        .status {
+            margin-top: 20px;
+            color: #8bcf85;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>MINECRAFT SERVER</h1>
+        <p>Добро пожаловать на наш сервер!</p>
+
+        <button class="ip" onclick="copyIP()">
+            play.example.ru
+        </button>
+
+        <div class="status">Сервер ждёт тебя</div>
+    </div>
+
+    <script>
+        function copyIP() {
+            navigator.clipboard.writeText("play.example.ru");
+            alert("IP скопирован!");
+        }
+    </script>
+
+</body>
+</html>
