@@ -43,8 +43,8 @@
     .facts { display:grid; gap:12px; }
     .politics { padding-top:8px; padding-bottom:36px; }
     .politics-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
-    .politics-card { position:relative; display:flex; gap:15px; min-height:142px; padding:21px; overflow:hidden; border:1px solid rgba(142,174,145,.2); border-radius:14px; background:linear-gradient(135deg,rgba(82,123,90,.16),rgba(255,255,255,.018) 70%); }
-    .politics-card::after { content:""; position:absolute; width:110px; height:110px; right:-48px; bottom:-62px; border:1px solid rgba(142,174,145,.12); border-radius:50%; box-shadow:0 0 0 12px rgba(142,174,145,.025),0 0 0 26px rgba(142,174,145,.02); pointer-events:none; }
+    .politics-card { position:relative; display:flex; gap:15px; min-height:142px; padding:21px 76px 21px 21px; overflow:hidden; border:1px solid rgba(142,174,145,.2); border-radius:14px; background:linear-gradient(135deg,rgba(82,123,90,.16),rgba(255,255,255,.018) 70%); }
+    .politics-icon { position:absolute; width:58px; height:58px; right:13px; bottom:10px; opacity:.62; filter:drop-shadow(0 3px 7px rgba(0,0,0,.28)); shape-rendering:crispEdges; pointer-events:none; }
     .politics-mark { color:var(--accent-light); font-size:.75rem; letter-spacing:.12em; font-weight:800; padding-top:4px; }
     .politics-card h3 { font-size:1.05rem; margin-bottom:5px; }
     .politics-card p { color:var(--muted); font-size:.9rem; line-height:1.5; }
@@ -94,14 +94,31 @@
         <article class="politics-card">
           <span class="politics-mark">01</span>
           <div><h3>Механика войн</h3><p>Государства мобилизуют войска, а в назначенное время сражаются за территории и влияние. Исход войны зависит от действий самих игроков.</p></div>
+          <svg class="politics-icon" viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M43 4h13v8H43zM35 12h13v8H35zM27 20h13v8H27zM19 28h13v8H19zM11 36h13v8H11zM7 44h12v8H7zM3 52h12v8H3z" fill="#a9c8aa"/>
+            <path d="M42 4h14v5H42zM34 12h14v5H34zM26 20h14v5H26zM18 28h14v5H18z" fill="#e0eee0"/>
+            <path d="M8 40h15v5H8zM4 48h15v5H4zM12 36h7v5h-7z" fill="#789b7b"/>
+            <path d="M3 56h14v5H3zM19 48h6v6h-6z" fill="#b7a47b"/>
+          </svg>
         </article>
         <article class="politics-card">
           <span class="politics-mark">02</span>
           <div><h3>Уникальные сезоны</h3><p>У каждого сезона — свои ветви развития, правила и особые механики. Новый сезон открывает новые возможности и меняет ход игры.</p></div>
+          <svg class="politics-icon" viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M28 5h8v12h-8zM28 17h8v8h-8zM12 25h40v8H12zM12 33h8v12h-8zM44 33h8v12h-8zM4 45h24v8H4zM36 45h24v8H36zM4 53h8v7H4zM20 53h8v7h-8zM36 53h8v7h-8zM52 53h8v7h-8z" fill="#a9c8aa"/>
+            <path d="M28 5h8v5h-8zM12 25h40v5H12zM4 45h24v5H4zM36 45h24v5H36z" fill="#dcebdd"/>
+            <path d="M28 17h8v8h-8zM12 33h8v12h-8zM44 33h8v12h-8z" fill="#789b7b"/>
+          </svg>
         </article>
         <article class="politics-card">
           <span class="politics-mark">03</span>
           <div><h3>Создай государство</h3><p>Присоединяйся к уже существующему государству или основай собственное — и сам решай, каким будет его будущее.</p></div>
+          <svg class="politics-icon" viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M7 8h21v5H12v39h16v5H7zM36 8h21v49H36v-5h16V13H36z" fill="#a9c8aa"/>
+            <path d="M28 13h8v39h-8z" fill="#789b7b"/>
+            <path d="M12 18h12v4H12zM12 27h12v4H12zM12 36h12v4H12zM40 18h12v4H40zM40 27h12v4H40zM40 36h12v4H40z" fill="#dcebdd"/>
+            <path d="M28 13h8v39h-8z" fill="#b7a47b" opacity=".75"/>
+          </svg>
         </article>
       </div>
     </section>
