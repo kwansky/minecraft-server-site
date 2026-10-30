@@ -26,7 +26,7 @@
     .button:hover, nav a:hover { transform:translateY(-2px); }
     .topbar { position:absolute; z-index:2; top:0; left:0; right:0; display:flex; justify-content:center; padding:22px 18px; }
     nav { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; padding:7px; border:1px solid var(--line); border-radius:12px; background:rgba(12,17,13,.68); backdrop-filter:blur(14px); }
-    nav a { color:#e0e5e0; font-size:.9rem; padding:8px 15px; border-radius:7px; transition:.2s; }\n    nav a.active { background:rgba(82,123,90,.32); color:#b7d7ba; box-shadow:inset 0 0 0 1px rgba(142,174,145,.38); }
+    nav a { color:#e0e5e0; font-size:.9rem; padding:8px 15px; border-radius:7px; transition:.2s; }\n    nav a.active, nav a.active:hover { background:#527b5a; color:#fff; box-shadow:inset 0 0 0 1px #8eae91; }
     nav a:hover { background:rgba(255,255,255,.09); }
     main { width:100%; margin:0; padding-inline:max(20px,calc((100% - 1080px)/2)); background:var(--bg); }
     section { padding:28px 0; scroll-margin-top:30px; }
@@ -50,9 +50,9 @@
   <header class="hero" id="home">
     <div class="topbar">
       <nav aria-label="Основная навигация">
-        <a class="active" aria-current="page" href="#" onclick="return false;">Главная</a>
-        <a href="#" onclick="return false;">Донат</a>
-        <a href="#" onclick="return false;">Как играть</a>
+        <a class="active" aria-current="page" href="#" data-tab="home">Главная</a>
+        <a href="#" data-tab="donate">Донат</a>
+        <a href="#" data-tab="how">Как играть</a>
       </nav>
     </div>
     <img class="logo" src="./tarizicraft.png" alt="Таразикрафт">
@@ -96,6 +96,18 @@
 
   <footer>© Таразикрафт · Политический Minecraft-сервер</footer>
   <script>
+    document.querySelectorAll('nav a[data-tab]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        document.querySelectorAll('nav a[data-tab]').forEach((item) => {
+          item.classList.remove('active');
+          item.removeAttribute('aria-current');
+        });
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+      });
+    });
+
     document.getElementById('copy-ip').addEventListener('click', async () => {
       const button = document.getElementById('copy-ip');
       try {
