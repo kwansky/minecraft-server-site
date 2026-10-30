@@ -42,9 +42,19 @@
     .panel p { color:#c0c7c0; }
     .facts { display:grid; gap:12px; }
     .politics { padding-top:8px; padding-bottom:36px; }
-    .politics-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
-    .politics-card { position:relative; display:flex; gap:15px; min-height:142px; padding:21px 76px 21px 21px; overflow:hidden; border:1px solid rgba(142,174,145,.2); border-radius:14px; background:linear-gradient(135deg,rgba(82,123,90,.16),rgba(255,255,255,.018) 70%); }
-    .politics-icon { position:absolute; width:58px; height:58px; right:13px; bottom:10px; opacity:.62; filter:drop-shadow(0 3px 7px rgba(0,0,0,.28)); shape-rendering:crispEdges; pointer-events:none; }
+    .politics-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+    .politics-card { position:relative; display:flex; gap:15px; min-height:190px; padding:23px 21px; overflow:hidden; isolation:isolate; border:1px solid rgba(142,174,145,.24); border-radius:14px; background:linear-gradient(115deg,rgba(13,22,16,.97) 0%,rgba(15,26,19,.91) 52%,rgba(18,34,23,.76) 100%); box-shadow:inset 0 1px 0 rgba(220,255,220,.08),0 14px 35px rgba(0,0,0,.18); transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease; }
+    .politics-card::before { content:""; position:absolute; z-index:-1; inset:0; opacity:.9; pointer-events:none; transition:transform .55s ease,opacity .35s ease; }
+    .politics-card::after { content:""; position:absolute; z-index:-1; width:190px; height:190px; right:-58px; bottom:-94px; border:1px solid rgba(157,211,160,.22); border-radius:50%; box-shadow:0 0 0 12px rgba(157,211,160,.025),0 0 0 28px rgba(157,211,160,.02),0 0 55px rgba(83,160,96,.16); pointer-events:none; }
+    .politics-card:hover { transform:translateY(-5px); border-color:rgba(142,190,148,.52); box-shadow:inset 0 1px 0 rgba(220,255,220,.12),0 18px 42px rgba(0,0,0,.3),0 0 25px rgba(70,130,78,.1); }
+    .politics-card:hover::before { transform:scale(1.06); opacity:1; }
+    .politics-card:nth-child(1)::before { background:radial-gradient(ellipse at 88% 72%,rgba(172,197,145,.26),transparent 24%),linear-gradient(145deg,transparent 50%,rgba(95,129,91,.15) 50.5%,transparent 51%),linear-gradient(35deg,transparent 58%,rgba(125,151,109,.13) 58.5%,transparent 59%),repeating-linear-gradient(135deg,transparent 0 18px,rgba(175,205,166,.035) 19px 20px); clip-path:polygon(48% 0,100% 0,100% 100%,35% 100%); }
+    .politics-card:nth-child(2)::before { background:radial-gradient(circle at 82% 47%,rgba(127,211,125,.36),transparent 7%),radial-gradient(circle at 75% 56%,rgba(92,176,104,.2),transparent 23%),radial-gradient(circle at 92% 20%,rgba(106,172,114,.16),transparent 18%),linear-gradient(135deg,transparent 60%,rgba(93,144,97,.14)); }
+    .politics-card:nth-child(3)::before { background:radial-gradient(ellipse at 86% 72%,rgba(191,163,106,.25),transparent 23%),linear-gradient(155deg,transparent 52%,rgba(159,139,99,.14) 52.5%,transparent 53%),repeating-linear-gradient(0deg,transparent 0 15px,rgba(198,177,132,.045) 16px 17px); }
+    .politics-mark { position:relative; z-index:1; color:var(--accent-light); font-size:.75rem; letter-spacing:.12em; font-weight:800; padding-top:4px; }
+    .politics-card > div { position:relative; z-index:1; max-width:83%; }
+    .politics-card h3 { font-size:1.05rem; margin-bottom:7px; text-shadow:0 2px 12px #000; }
+    .politics-card p { color:#b7c2b8; font-size:.9rem; line-height:1.5; text-shadow:0 2px 10px #000; }
     .politics-mark { color:var(--accent-light); font-size:.75rem; letter-spacing:.12em; font-weight:800; padding-top:4px; }
     .politics-card h3 { font-size:1.05rem; margin-bottom:5px; }
     .politics-card p { color:var(--muted); font-size:.9rem; line-height:1.5; }
@@ -54,8 +64,12 @@
     .fact span { overflow-wrap:anywhere; }
     .how { display:flex; align-items:center; justify-content:space-between; gap:24px; }
     .how p { max-width:650px; color:var(--muted); }
+    .panel { position:relative; overflow:hidden; box-shadow:inset 0 1px 0 rgba(220,255,220,.045),0 16px 38px rgba(0,0,0,.12); }
+    .section-head h2 { text-shadow:0 3px 24px rgba(104,157,109,.13); }
+    .section-head .eyebrow { text-shadow:0 0 18px rgba(142,174,145,.35); }
+    .about-grid .panel { background:radial-gradient(ellipse at 100% 0%,rgba(82,123,90,.16),transparent 55%),linear-gradient(145deg,rgba(82,123,90,.1),rgba(255,255,255,.018)); }
     footer { position:relative; border:0; text-align:center; color:#737b74; padding:90px 20px 36px; font-size:.88rem; background:linear-gradient(to bottom,var(--bg) 0%,#080a08 48%,#000 100%); }
-    @media(max-width:700px) { .politics-grid { grid-template-columns:1fr; } .politics-card { min-height:unset; } .about-grid { grid-template-columns:1fr; } .how { align-items:flex-start; flex-direction:column; } .hero { min-height:720px; } section { padding:22px 0; } footer { padding-top:68px; } }
+    @media(max-width:700px) { .politics-grid { grid-template-columns:1fr; } .politics-card { min-height:170px; } .about-grid { grid-template-columns:1fr; } .how { align-items:flex-start; flex-direction:column; } .hero { min-height:720px; } section { padding:22px 0; } footer { padding-top:68px; } }
   </style>
 </head>
 <body>
@@ -94,31 +108,7 @@
         <article class="politics-card">
           <span class="politics-mark">01</span>
           <div><h3>Механика войн</h3><p>Государства мобилизуют войска, а в назначенное время сражаются за территории и влияние. Исход войны зависит от действий самих игроков.</p></div>
-          <svg class="politics-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M43 4h13v8H43zM35 12h13v8H35zM27 20h13v8H27zM19 28h13v8H19zM11 36h13v8H11zM7 44h12v8H7zM3 52h12v8H3z" fill="#a9c8aa"/>
-            <path d="M42 4h14v5H42zM34 12h14v5H34zM26 20h14v5H26zM18 28h14v5H18z" fill="#e0eee0"/>
-            <path d="M8 40h15v5H8zM4 48h15v5H4zM12 36h7v5h-7z" fill="#789b7b"/>
-            <path d="M3 56h14v5H3zM19 48h6v6h-6z" fill="#b7a47b"/>
-          </svg>
-        </article>
-        <article class="politics-card">
-          <span class="politics-mark">02</span>
-          <div><h3>Уникальные сезоны</h3><p>У каждого сезона — свои ветви развития, правила и особые механики. Новый сезон открывает новые возможности и меняет ход игры.</p></div>
-          <svg class="politics-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M28 5h8v12h-8zM28 17h8v8h-8zM12 25h40v8H12zM12 33h8v12h-8zM44 33h8v12h-8zM4 45h24v8H4zM36 45h24v8H36zM4 53h8v7H4zM20 53h8v7h-8zM36 53h8v7h-8zM52 53h8v7h-8z" fill="#a9c8aa"/>
-            <path d="M28 5h8v5h-8zM12 25h40v5H12zM4 45h24v5H4zM36 45h24v5H36z" fill="#dcebdd"/>
-            <path d="M28 17h8v8h-8zM12 33h8v12h-8zM44 33h8v12h-8z" fill="#789b7b"/>
-          </svg>
-        </article>
-        <article class="politics-card">
-          <span class="politics-mark">03</span>
-          <div><h3>Создай государство</h3><p>Присоединяйся к уже существующему государству или основай собственное — и сам решай, каким будет его будущее.</p></div>
-          <svg class="politics-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M7 8h21v5H12v39h16v5H7zM36 8h21v49H36v-5h16V13H36z" fill="#a9c8aa"/>
-            <path d="M28 13h8v39h-8z" fill="#789b7b"/>
-            <path d="M12 18h12v4H12zM12 27h12v4H12zM12 36h12v4H12zM40 18h12v4H40zM40 27h12v4H40zM40 36h12v4H40z" fill="#dcebdd"/>
-            <path d="M28 13h8v39h-8z" fill="#b7a47b" opacity=".75"/>
-          </svg>
+
         </article>
       </div>
     </section>
